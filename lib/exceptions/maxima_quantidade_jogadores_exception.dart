@@ -1,0 +1,1 @@
+class MaximaQuantidadeJogadoresException extends Error {}

@@ -1,0 +1,1 @@
+class MinimaQuantidadeJogadoresException extends Error {}

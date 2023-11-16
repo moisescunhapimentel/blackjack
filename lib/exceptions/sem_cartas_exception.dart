@@ -1,0 +1,1 @@
+class SemCartasException extends Error {}

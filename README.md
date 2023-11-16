@@ -1,6 +1,3 @@
-Observação: Precisei remover todos os arquivos "desnecessários", pois o .zip 
-estava com tamanho maior que 10 MB.
-
 Antes de qualquer coisa, rode:
 
 ```bash

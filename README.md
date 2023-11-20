@@ -1,5 +1,4 @@
-Observação: Precisei remover todos os arquivos "desnecessários", pois o .zip 
-estava com tamanho maior que 10 MB.
+Link do repositório: https://github.com/moisescunhapimentel/blackjack
 
 Antes de qualquer coisa, rode:
 

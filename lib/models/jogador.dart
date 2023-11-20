@@ -1,5 +1,8 @@
 import 'package:blackjack/models/cartas.dart';
 
+/**
+ * Representa um jogador do blackjack e suas cartas
+ */
 class Jogador {
   final String nome;
   final Cartas cartas;

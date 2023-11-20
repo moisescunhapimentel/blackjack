@@ -1,26 +1,17 @@
-import 'package:blackjack/models/partida.dart';
+import 'package:blackjack/models/historico_partida.dart';
+import 'package:blackjack/views/resultado_view.dart';
 import 'package:blackjack/views/view.dart';
 
 class HistoricoPartidaView implements View<void> {
-  HistoricoDaPartida partida;
+  HistoricoPartida historicoPartida;
 
-  HistoricoPartidaView(this.partida);
+  HistoricoPartidaView(this.historicoPartida);
 
   @override
   void build() {
-    print('\n\nTipo da partida: ${partida.tipoPartida.name}');
-
-    if (partida.tipoPartida == TipoPartida.vitoria) {
-      print("Vencedores:");
-      for (var jogador in partida.vencedores) {
-        print(jogador.nome);
-      }
-    }
-
-    print('Pontuação de cada jogador');
-
-    for (var jogador in partida.jogadores) {
-      print('Nome: ${jogador.nome} - Pontuação: ${jogador.pontuacao()}');
+    for (var resultado in historicoPartida.resultados) {
+      ResultadoView(resultado).build();
+      print('\n');
     }
   }
 }

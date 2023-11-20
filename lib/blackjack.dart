@@ -1,10 +1,12 @@
 import 'dart:math';
 
+import 'package:blackjack/enums/tipo_partida.dart';
 import 'package:blackjack/exceptions/maxima_quantidade_jogadores_exception.dart';
 import 'package:blackjack/exceptions/minima_quantidade_jogadores_exception.dart';
 import 'package:blackjack/models/baralho.dart';
+import 'package:blackjack/models/historico_partida.dart';
 import 'package:blackjack/models/jogador.dart';
-import 'package:blackjack/models/partida.dart';
+import 'package:blackjack/models/resultado_partida.dart';
 import 'package:blackjack/regras/quantidade_maxima_jogadores_regra.dart';
 import 'package:blackjack/regras/quantidade_minima_jogadores_regra.dart';
 import 'package:blackjack/regras/regra.dart';
@@ -15,7 +17,7 @@ class Blackjack {
   final Regra<List<Jogador>> maximoJogadores;
   final Regra<List<Jogador>> minimoJogadores;
   final Baralho baralho;
-  final List<HistoricoDaPartida> partidas;
+  final HistoricoPartida historicoPartida;
 
   Blackjack(
       {Regra<List<Jogador>>? maximoJogadores,
@@ -23,7 +25,7 @@ class Blackjack {
       List<Jogador>? jogadores})
       : jogadores = jogadores ?? [],
         baralho = Baralho(),
-        partidas = [],
+        historicoPartida = HistoricoPartida(),
         maximoJogadores =
             maximoJogadores ?? const QuantidadeMaximaJogadoresRegra(),
         minimoJogadores = minimoJogadores ?? QuantidadeMinimaJogadoresRegra();
@@ -41,7 +43,7 @@ class Blackjack {
     var copiaVencedores = vencedores.map((e) => e.copiaJogador()).toList();
     var copiaJogadores = jogadores.map((e) => e.copiaJogador()).toList();
 
-    partidas.add(HistoricoDaPartida(
+    historicoPartida.adicionarResultado(ResultadoPartida(
         tipoPartida: tipoPartida,
         vencedores: copiaVencedores,
         jogadores: copiaJogadores));

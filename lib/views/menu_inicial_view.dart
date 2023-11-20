@@ -2,6 +2,10 @@ import 'package:blackjack/utils/pedir_int.dart';
 import 'package:blackjack/views/jogo_view.dart';
 import 'package:blackjack/views/view.dart';
 
+/**
+ * Menu que possibilita iniciar um novo jogo ou sair e fechar o programa.
+ * 
+ */
 class MenuInicialView implements View<void> {
   const MenuInicialView();
 

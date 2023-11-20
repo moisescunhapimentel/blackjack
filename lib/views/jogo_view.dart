@@ -1,9 +1,14 @@
 import 'package:blackjack/controllers/blackjack_controller.dart';
+import 'package:blackjack/models/response.dart';
 import 'package:blackjack/utils/pedir_string.dart';
 import 'package:blackjack/views/cartas_view.dart';
 import 'package:blackjack/views/partida_view.dart';
+import 'package:blackjack/views/resultado_view.dart';
 import 'package:blackjack/views/view.dart';
 
+/**
+ * View principal que contém o Blackjack
+ */
 class JogoView implements View<void> {
   BlackjackController controller;
 
@@ -18,7 +23,13 @@ class JogoView implements View<void> {
           pedirString(text: '\nDeseja adicionar um novo jogador? (s/n)');
 
       if (opcao.toLowerCase() == 's') {
-        controller.adicionarJogador();
+        Response<void, String> adicionarResponse =
+            controller.adicionarJogador();
+
+        if (adicionarResponse.error != null) {
+          print(adicionarResponse.error);
+          break;
+        }
       } else {
         break;
       }
@@ -30,7 +41,12 @@ class JogoView implements View<void> {
         pedirString();
 
         while (true) {
-          controller.jogar(jogador);
+          Response<void, String> jogarResponse = controller.jogar(jogador);
+
+          if (jogarResponse.error != null) {
+            print(jogarResponse.error);
+            break;
+          }
 
           CartasView(jogador.cartas).build();
 
@@ -53,6 +69,7 @@ class JogoView implements View<void> {
       print('\nFinalizando partida');
 
       controller.finalizarPartida();
+      ResultadoView(controller.ultimaPartida()).build();
 
       String opcao = pedirString(text: 'Nova partida? (s/n)');
 
@@ -61,8 +78,6 @@ class JogoView implements View<void> {
 
     print('\nHistórico de partidas do Jogo:');
 
-    for (var partida in controller.blackjack.partidas) {
-      HistoricoPartidaView(partida).build();
-    }
+    HistoricoPartidaView(controller.historico()).build();
   }
 }

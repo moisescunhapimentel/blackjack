@@ -8,8 +8,21 @@ class Carta {
     required this.value,
     required this.naipe,
   }) : assert(
-            ['A', 'J', 'Q', 'K', '2', '3', '4', '5', '6', '7', '8', '9', '10']
-                .contains(value),
+            const [
+              'A',
+              'J',
+              'Q',
+              'K',
+              '2',
+              '3',
+              '4',
+              '5',
+              '6',
+              '7',
+              '8',
+              '9',
+              '10'
+            ].contains(value),
             "o valor deve ser uma carta válida");
 
   int getValue() {
